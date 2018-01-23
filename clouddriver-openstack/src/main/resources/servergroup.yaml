@@ -95,7 +95,6 @@ resources:
       min_size: {get_param: min_size}
       max_size: {get_param: max_size}
       desired_capacity: {get_param: desired_size}
-      zones: {get_param: zones}
       resource:
         type: {get_param: resource_filename}
         properties:
@@ -112,6 +111,7 @@ resources:
           security_groups: {get_param: security_groups}
           subnet_id: {get_param: subnet_id}
           user_data: {get_param: user_data}
+          zones: {get_param: zones}
   web_server_scaleup_policy:
     type: OS::Heat::ScalingPolicy
     properties:
