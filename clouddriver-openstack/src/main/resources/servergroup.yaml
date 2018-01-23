@@ -84,6 +84,10 @@ parameters:
   resource_filename:
     type: string
     description: Member resource file name (i.e. servergroup_resource.yaml)
+  zones:
+    type: comma_delimited_list
+    description: Availability zones to deploy to.
+    default: ""
 resources:
   servergroup:
     type: OS::Heat::AutoScalingGroup
@@ -91,6 +95,7 @@ resources:
       min_size: {get_param: min_size}
       max_size: {get_param: max_size}
       desired_capacity: {get_param: desired_size}
+      zones: {get_param: zones}
       resource:
         type: {get_param: resource_filename}
         properties:

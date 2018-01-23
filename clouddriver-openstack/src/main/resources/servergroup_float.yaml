@@ -87,6 +87,10 @@ parameters:
   resource_filename:
     type: string
     description: Member resource file name (i.e. servergroup_resource.yaml)
+  zones:
+    type: comma_delimited_list
+    description: Availability zones to deploy to.
+    default: ""
 resources:
   servergroup:
     type: OS::Heat::AutoScalingGroup
@@ -111,6 +115,7 @@ resources:
           security_groups: {get_param: security_groups}
           subnet_id: {get_param: subnet_id}
           user_data: {get_param: user_data}
+          zones: {get_param: zones}
   web_server_scaleup_policy:
     type: OS::Heat::ScalingPolicy
     properties:
