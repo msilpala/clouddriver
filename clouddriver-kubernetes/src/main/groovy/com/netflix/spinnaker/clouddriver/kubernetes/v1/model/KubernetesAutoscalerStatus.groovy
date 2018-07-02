@@ -28,9 +28,11 @@ class KubernetesAutoscalerStatus {
   KubernetesAutoscalerStatus() { }
 
   KubernetesAutoscalerStatus(HorizontalPodAutoscaler autoscaler) {
-    this.currentCpuUtilization = autoscaler.status.currentCPUUtilizationPercentage
-    this.currentReplicas = autoscaler.status.currentReplicas
-    this.desiredReplicas = autoscaler.status.desiredReplicas
-    this.lastScaleTime = KubernetesModelUtil.translateTime(autoscaler.status.lastScaleTime)
+    if (autoscaler.status != null) {
+      this.currentCpuUtilization = autoscaler.status.currentCPUUtilizationPercentage
+      this.currentReplicas = autoscaler.status.currentReplicas
+      this.desiredReplicas = autoscaler.status.desiredReplicas
+      this.lastScaleTime = KubernetesModelUtil.translateTime(autoscaler.status.lastScaleTime)
+    }
   }
 }
